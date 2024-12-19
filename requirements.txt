@@ -1,3 +1,4 @@
 streamlit
 selenium
 pandas
+undetected-chromedriver  # A robust package to work around Chrome restrictions
