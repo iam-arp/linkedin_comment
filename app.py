@@ -38,13 +38,16 @@ def main():
             st.error("Please fill in all the required fields.")
 
 # Function to scrape emails using Selenium
+import undetected_chromedriver as uc
+
 def scrape_emails(email, password, post_url):
-    # Configure Selenium WebDriver
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Chrome(options=options)
+    # Configure headless Chrome with undetected_chromedriver
+    options = uc.ChromeOptions()
+    options.add_argument("--headless")  # Run in headless mode
+    options.add_argument("--no-sandbox")  # Required for environments like Streamlit Cloud
+    options.add_argument("--disable-dev-shm-usage")  # Prevent crashes due to limited resources
+    
+    driver = uc.Chrome(options=options)
 
     try:
         # Open LinkedIn and log in
@@ -86,6 +89,7 @@ def scrape_emails(email, password, post_url):
 
     finally:
         driver.quit()
+
 
 if __name__ == "__main__":
     main()
